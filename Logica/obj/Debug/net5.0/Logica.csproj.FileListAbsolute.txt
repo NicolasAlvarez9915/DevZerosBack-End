@@ -1,0 +1,17 @@
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Logica.deps.json
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Logica.dll
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\ref\Logica.dll
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Logica.pdb
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Datos.dll
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Entidad.dll
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Datos.pdb
+F:\DevZeros\Back-End\Logica\bin\Debug\net5.0\Entidad.pdb
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.csprojAssemblyReference.cache
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.GeneratedMSBuildEditorConfig.editorconfig
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.AssemblyInfoInputs.cache
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.AssemblyInfo.cs
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.csproj.CoreCompileInputs.cache
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.csproj.CopyComplete
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.dll
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\ref\Logica.dll
+F:\DevZeros\Back-End\Logica\obj\Debug\net5.0\Logica.pdb

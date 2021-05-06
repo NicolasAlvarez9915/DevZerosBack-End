@@ -1,0 +1,12 @@
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.csprojAssemblyReference.cache
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.GeneratedMSBuildEditorConfig.editorconfig
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.AssemblyInfoInputs.cache
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.AssemblyInfo.cs
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.csproj.CoreCompileInputs.cache
+F:\DevZeros\Back-End\Entidad\bin\Debug\net5.0\Entidad.deps.json
+F:\DevZeros\Back-End\Entidad\bin\Debug\net5.0\Entidad.dll
+F:\DevZeros\Back-End\Entidad\bin\Debug\net5.0\ref\Entidad.dll
+F:\DevZeros\Back-End\Entidad\bin\Debug\net5.0\Entidad.pdb
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.dll
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\ref\Entidad.dll
+F:\DevZeros\Back-End\Entidad\obj\Debug\net5.0\Entidad.pdb
