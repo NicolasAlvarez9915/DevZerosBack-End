@@ -17,6 +17,5 @@ namespace Entidad
         public string Rol { get; set; }
         [Column(TypeName = "nvarchar(4)")]
         public string Estado { get; set; }
-
     }
 }

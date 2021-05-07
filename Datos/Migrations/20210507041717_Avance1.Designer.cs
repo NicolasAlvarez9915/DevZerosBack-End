@@ -4,14 +4,16 @@ using Datos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Datos.Migrations
 {
     [DbContext(typeof(NaacCelularesContext))]
-    partial class NaacCelularesContextModelSnapshot : ModelSnapshot
+    [Migration("20210507041717_Avance1")]
+    partial class Avance1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +30,7 @@ namespace Datos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CodDispositivoMovil")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("CodFactura")
                         .HasColumnType("nvarchar(11)");
@@ -56,7 +58,7 @@ namespace Datos.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CodDispositivoMovil")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("CodFactura")
                         .HasColumnType("nvarchar(11)");
