@@ -13,7 +13,7 @@ namespace Entidad
         public string Nombres { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string Apellidos { get; set; }
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar(15)")]
         public string Telefono { get; set; }
     }
 }
