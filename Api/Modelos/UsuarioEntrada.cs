@@ -23,7 +23,7 @@ namespace Api.Modelos
             Correo = usuario.Correo;
             Contrasena = usuario.Contraseña;
             Rol = usuario.Rol;
-            IdPersona = usuario.IdPersona;
+            IdPersona = usuario.Identificacion;
             Estado = usuario.Estado;
         }
     }

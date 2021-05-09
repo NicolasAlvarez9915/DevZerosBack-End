@@ -27,7 +27,6 @@ namespace Api.Controllers
             JwtService = new JwtService(appSettings);
             Service = new InteresadoService(context);
         }
-
         [HttpGet("{identificacion}")]
         public ActionResult<InteresadoVista> Get(string identificacion)
         {

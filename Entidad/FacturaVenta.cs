@@ -8,45 +8,21 @@ namespace Entidad
     public class FacturaVenta: Factura
     {
         [ForeignKey("CodFactura")]
-        private List<DetalleFacturaVenta> detallesFactura;
+        public List<DetalleFacturaVenta> DetallesFactura  { get; set; }
         [ForeignKey("Interesado")]
+        [Column(TypeName = "nvarchar(11)")]
         public string IdInteresado { get; set; }
         [Column(TypeName = "real")]
-        public decimal Subtotal
-        {
-            get 
-            {
-               return detallesFactura.Sum(d => d.Subtotal);
-            }
-        }
+        public decimal Subtotal { get; set; }
         [Column(TypeName = "real")]
-        public decimal IVA
-        {
-            get
-            {
-                return detallesFactura.Sum(d => d.ValorIVA);
-            }
-        }
+        public decimal Iva  { get; set; }
         [Column(TypeName = "real")]
-        public decimal Descuento
-        {
-            get
-            {
-                return detallesFactura.Sum(d => d.ValorDescuento);
-            }
-        }
+        public decimal Descuento { get; set; }
         [Column(TypeName = "real")]
-        public decimal Total
-        {
-            get
-            {
-                return Subtotal-Descuento+IVA;
-            }
-        }
-
+        public decimal Total { get; set; }
         public FacturaVenta()
         {
-            detallesFactura = new List<DetalleFacturaVenta>();
+            DetallesFactura = new List<DetalleFacturaVenta>();
         }
 
         public DetalleFacturaVenta AgregarDetallesFactura(DispositivoMovil producto)
@@ -57,14 +33,22 @@ namespace Entidad
             }
             DetalleFacturaVenta detalleFactura = new DetalleFacturaVenta(producto);
             detalleFactura.CodFactura = Codigo;
-            detallesFactura.Add(detalleFactura);
+            DetallesFactura.Add(detalleFactura);
+            Calulartodo();
             return detalleFactura;
 
+        }
+        void Calulartodo()
+        {
+            Subtotal = DetallesFactura.Sum(d => d.Subtotal);
+            Descuento = DetallesFactura.Sum(d => d.ValorDescuento);
+            Iva = DetallesFactura.Sum(d => d.ValorIVA);
+            Total = Subtotal - Descuento + Iva;
         }
 
         public List<DetalleFacturaVenta> GetDetallesFactura()
         {
-           return detallesFactura;
+           return DetallesFactura;
 
         }
     }

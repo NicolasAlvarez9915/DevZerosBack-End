@@ -20,7 +20,7 @@ namespace Api.Service
             if (usuario == null) return null;
             var userResponse = new SessionVista() {
                  Correo = usuario.Correo, 
-                 IdPersona = usuario.IdPersona, 
+                 IdPersona = usuario.Identificacion, 
                  Rol = usuario.Rol };
                  
             // authentication successful so generate jwt token
@@ -32,7 +32,7 @@ namespace Api.Service
                 {
                     new Claim(ClaimTypes.Name, usuario.Contraseña),
                     new Claim(ClaimTypes.Email, usuario.Correo),
-                    new Claim(ClaimTypes.NameIdentifier, usuario.IdPersona),
+                    new Claim(ClaimTypes.NameIdentifier, usuario.Identificacion),
                     new Claim(ClaimTypes.Role, usuario.Rol),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),

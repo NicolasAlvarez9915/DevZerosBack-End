@@ -43,5 +43,6 @@ namespace Entidad
         public string TipoProteccion { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string LectorHuella { get; set; }
+        public byte[] Imagen { get; set; }
     }
 }

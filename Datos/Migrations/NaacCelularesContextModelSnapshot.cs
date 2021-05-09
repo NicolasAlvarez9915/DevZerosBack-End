@@ -39,10 +39,27 @@ namespace Datos.Migrations
                     b.Property<float>("PorcentajeIva")
                         .HasColumnType("real");
 
+                    b.Property<float>("Subtotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorDescuento")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorDespuesDescuento")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorIVA")
+                        .HasColumnType("real");
+
                     b.Property<float>("ValorUnitario")
                         .HasColumnType("real");
 
                     b.HasKey("Codigo");
+
+                    b.HasIndex("CodFactura");
 
                     b.ToTable("DetallesFacturaCompra");
                 });
@@ -67,10 +84,27 @@ namespace Datos.Migrations
                     b.Property<float>("PorcentajeIva")
                         .HasColumnType("real");
 
+                    b.Property<float>("Subtotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorDescuento")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorDespuesDescuento")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorIVA")
+                        .HasColumnType("real");
+
                     b.Property<float>("ValorUnitario")
                         .HasColumnType("real");
 
                     b.HasKey("Codigo");
+
+                    b.HasIndex("CodFactura");
 
                     b.ToTable("DetallesFacturaVenta");
                 });
@@ -91,6 +125,9 @@ namespace Datos.Migrations
 
                     b.Property<string>("CapacidadBateria")
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<byte[]>("Imagen")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("LectorHuella")
                         .HasColumnType("nvarchar(50)");
@@ -141,11 +178,23 @@ namespace Datos.Migrations
                     b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<float>("Descuento")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("FechaFactura")
                         .HasColumnType("Date");
 
                     b.Property<string>("IdProveedor")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<float>("Iva")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Subtotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
 
                     b.HasKey("Codigo");
 
@@ -157,11 +206,23 @@ namespace Datos.Migrations
                     b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<float>("Descuento")
+                        .HasColumnType("real");
+
                     b.Property<DateTime>("FechaFactura")
                         .HasColumnType("Date");
 
                     b.Property<string>("IdInteresado")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<float>("Iva")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Subtotal")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
 
                     b.HasKey("Codigo");
 
@@ -183,7 +244,7 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("identificacion");
 
@@ -208,7 +269,7 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("identificacion");
 
@@ -233,7 +294,7 @@ namespace Datos.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("identificacion");
 
@@ -264,7 +325,7 @@ namespace Datos.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(4)");
 
-                    b.Property<string>("IdPersona")
+                    b.Property<string>("Identificacion")
                         .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("Rol")
@@ -273,6 +334,30 @@ namespace Datos.Migrations
                     b.HasKey("Correo");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("Entidad.DetalleFacturaCompra", b =>
+                {
+                    b.HasOne("Entidad.FacturaCompra", null)
+                        .WithMany("DetallesFactura")
+                        .HasForeignKey("CodFactura");
+                });
+
+            modelBuilder.Entity("Entidad.DetalleFacturaVenta", b =>
+                {
+                    b.HasOne("Entidad.FacturaVenta", null)
+                        .WithMany("DetallesFactura")
+                        .HasForeignKey("CodFactura");
+                });
+
+            modelBuilder.Entity("Entidad.FacturaCompra", b =>
+                {
+                    b.Navigation("DetallesFactura");
+                });
+
+            modelBuilder.Entity("Entidad.FacturaVenta", b =>
+                {
+                    b.Navigation("DetallesFactura");
                 });
 #pragma warning restore 612, 618
         }
