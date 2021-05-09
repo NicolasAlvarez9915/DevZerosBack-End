@@ -49,6 +49,8 @@ namespace Api.Controllers
             return Ok(Respuesta.Objecto);
         }
 
+        
+
         private DispositivoMovil MapearDispositivoMovil(DispositivoMovilEntrada entrada)
         {
             return new DispositivoMovil

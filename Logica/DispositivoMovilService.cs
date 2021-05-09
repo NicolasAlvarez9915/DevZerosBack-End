@@ -46,6 +46,14 @@ namespace Logica
             Context.SaveChanges();
         }
 
+        public void RestarCantidad(string codigo, int Cantidad)
+        {
+            DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.Find(codigo);
+            dispositivoEncontrado.Cantidad -= Cantidad;
+            Context.DispositivosMoviles.Update(dispositivoEncontrado);
+            Context.SaveChanges();
+        }
+
         public Respuesta<DispositivoMovil> Buscar(string Codigo)
         {
             DispositivoMovil dispositivoMovil = Context.DispositivosMoviles.Find(Codigo);

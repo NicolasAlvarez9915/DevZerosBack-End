@@ -47,6 +47,7 @@ namespace Entidad
             PorcentajeDescuento = dispositivoMovil.PorcentajeDescuento;
             PorcentajeIva = dispositivoMovil.PorcentajeIva;
             Cantidad = dispositivoMovil.Cantidad;
+            CodDispositivoMovil = dispositivoMovil.Codigo;
             CalcularTodo();
         }
         

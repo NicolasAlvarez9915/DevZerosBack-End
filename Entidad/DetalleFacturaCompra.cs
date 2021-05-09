@@ -8,7 +8,6 @@ namespace Entidad
         public DetalleFacturaCompra(DispositivoMovil dispositivoMovil) : base(dispositivoMovil)
         {
             ValorUnitario = dispositivoMovil.PrecioCompra;
-            CodDispositivoMovil = dispositivoMovil.Codigo;
             CalcularTodo();
         }
     }

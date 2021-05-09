@@ -10,10 +10,12 @@ namespace Logica
     {
         private readonly NaacCelularesContext Context;
         private readonly LiderAvaluosService liderAvaluosService;
+        private readonly ProfecionalVentasService profecionalVentasService;
         public UsuarioService(NaacCelularesContext Context)
         {
             this.Context = Context;
             liderAvaluosService = new LiderAvaluosService(Context);
+            profecionalVentasService = new ProfecionalVentasService(Context);
             ValidarUsuariosPredeterminados();
         }
 
@@ -55,6 +57,20 @@ namespace Logica
                     Correo = correo,
                     Estado = "AC",
                     Rol = "Lider Avaluos"
+                };
+                Guardar(usuario);
+            }
+            correo = "profecionalVentas@admin.com";
+            usuario = Context.Usuarios.Find(correo);
+            if (usuario == null)
+            {
+                ProfecionalVentas profecionalVentas = profecionalVentasService.RegistrarUsuarioPorDefecto();
+                usuario = new Usuario{
+                    Contraseña = "admin",
+                    Identificacion = profecionalVentas.identificacion,
+                    Correo = correo,
+                    Estado = "AC",
+                    Rol = "Profecional Ventas"
                 };
                 Guardar(usuario);
             }
