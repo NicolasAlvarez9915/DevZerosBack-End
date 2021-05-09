@@ -9,8 +9,10 @@ namespace Entidad
         [Key]
         [Column(TypeName = "nvarchar(50)")]
         public string Correo { get; set; }
+        
         [Column(TypeName = "nvarchar(11)")]
-        public string IdPersona { get; set; }
+        [ForeignKey("Persona")]
+        public string Identificacion { get; set; }
         [Column(TypeName = "nvarchar(50)")]
         public string Contraseña { get; set; }
         [Column(TypeName = "nvarchar(20)")]

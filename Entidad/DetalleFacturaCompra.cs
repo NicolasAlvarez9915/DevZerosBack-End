@@ -5,12 +5,11 @@ namespace Entidad
     public class DetalleFacturaCompra: DetalleFactura
     {
         public DetalleFacturaCompra(){}
-        public DetalleFacturaCompra(DispositivoMovil dispositivoMovil) 
+        public DetalleFacturaCompra(DispositivoMovil dispositivoMovil) : base(dispositivoMovil)
         {
             ValorUnitario = dispositivoMovil.PrecioCompra;
-            PorcentajeDescuento = dispositivoMovil.PorcentajeDescuento;
-            PorcentajeIva = dispositivoMovil.PorcentajeIva;
-            Cantidad = dispositivoMovil.Cantidad;
+            CodDispositivoMovil = dispositivoMovil.Codigo;
+            CalcularTodo();
         }
     }
 }

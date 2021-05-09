@@ -22,44 +22,32 @@ namespace Entidad
         [Column(TypeName = "nvarchar(11)")]
         public string CodFactura { get; set; }
         [Column(TypeName = "real")]
-        public decimal Subtotal
-        {
-            get
-            {
-                return ValorUnitario * Cantidad;
-            }
-        }
+        public decimal Subtotal { get; set; }
         [Column(TypeName = "real")]
-        public decimal ValorDescuento
-        {
-            get
-            {
-                return Subtotal * (PorcentajeDescuento / 100);
-            }
-        }
+        public decimal ValorDescuento { get; set; }
         [Column(TypeName = "real")]
-        public decimal ValorDespuesDescuento
-        {
-            get
-            {
-                return Subtotal -ValorDescuento;
-            }
-        }
+        public decimal ValorDespuesDescuento { get; set; }
         [Column(TypeName = "real")]
-        public decimal ValorIVA
-        {
-            get
-            {
-                return ValorDespuesDescuento * (PorcentajeIva/100);
-            }
-        }
+        public decimal ValorIVA { get; set; }
        [Column(TypeName = "real")]
-        public decimal Total
-        { 
-            get 
-            {
-                return Subtotal-ValorDescuento+ValorIVA;
-            }
+        public decimal Total{ get; set; }
+
+        public void CalcularTodo(){
+            Subtotal = ValorUnitario * Cantidad;
+            ValorDescuento = Subtotal * (PorcentajeDescuento / 100);
+            ValorDespuesDescuento = Subtotal -ValorDescuento;
+            ValorIVA = ValorDespuesDescuento * (PorcentajeIva/100);
+            Total = Subtotal-ValorDescuento+ValorIVA;
+        }
+
+        public DetalleFactura(){
+            
+        }
+        public DetalleFactura(DispositivoMovil dispositivoMovil){
+            PorcentajeDescuento = dispositivoMovil.PorcentajeDescuento;
+            PorcentajeIva = dispositivoMovil.PorcentajeIva;
+            Cantidad = dispositivoMovil.Cantidad;
+            CalcularTodo();
         }
         
     }

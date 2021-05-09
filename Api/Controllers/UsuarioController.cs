@@ -44,21 +44,31 @@ namespace Api.Controllers
                 Correo = sessionEntrada.Correo
             };
         }
-
-        [AllowAnonymous]
         [HttpPost]
         public ActionResult<UsuarioVista> Post(UsuarioEntrada UsuarioEntrada)
         {
             Usuario Usuario = MapearUsuario(UsuarioEntrada);
+            Usuario.Estado = "AC";
             var Respuesta = Service.Guardar(Usuario);
             return Ok(Respuesta.Objecto);
+        }
+
+        [HttpGet("{correo}")]
+        public ActionResult<UsuarioVista> Get(string correo)
+        {
+            var response = Service.Buscar(correo);
+            if(response.Error)
+            {
+                return BadRequest(response.Mensaje);
+            }
+            return Ok(new UsuarioVista(response.Objecto));
         }
         private Usuario MapearUsuario(UsuarioEntrada usuarioEntrada)
         {
             var usuario = new Usuario
             {
                 Contraseña = usuarioEntrada.Contrasena,
-                IdPersona = usuarioEntrada.IdPersona,
+                Identificacion = usuarioEntrada.IdPersona,
                 Correo = usuarioEntrada.Correo,
                 Rol = usuarioEntrada.Rol,
                 Estado = usuarioEntrada.Estado
