@@ -8,6 +8,7 @@ F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Api.dll
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\ref\Api.dll
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Api.pdb
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Humanizer.dll
+F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -65,4 +66,3 @@ F:\DevZeros\Back-End\Api\obj\Debug\net5.0\Api.dll
 F:\DevZeros\Back-End\Api\obj\Debug\net5.0\ref\Api.dll
 F:\DevZeros\Back-End\Api\obj\Debug\net5.0\Api.pdb
 F:\DevZeros\Back-End\Api\obj\Debug\net5.0\Api.genruntimeconfig.cache
-F:\DevZeros\Back-End\Api\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

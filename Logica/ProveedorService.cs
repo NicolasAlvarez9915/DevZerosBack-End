@@ -30,7 +30,7 @@ namespace Logica
         }
         
         public Respuesta<Proveedor> Buscar(string Identificacion){
-            Proveedor proveedor = Context.Proveedores.Find(Identificacion);
+            Proveedor proveedor = Context.Proveedores.FirstOrDefault(i => i.Nit == Identificacion);
             if(proveedor != null) return new Respuesta<Proveedor>(proveedor);
             return new Respuesta<Proveedor>("No existe");
         }

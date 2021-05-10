@@ -29,7 +29,7 @@ namespace Logica
         }
         
         public Respuesta<Interesado> Buscar(string Identificacion){
-            Interesado interesado = Context.Interesados.Find(Identificacion);
+            Interesado interesado = Context.Interesados.FirstOrDefault(i => i.identificacion == Identificacion);
             if(interesado != null) return new Respuesta<Interesado>(interesado);
             return new Respuesta<Interesado>("No existe");
         }
@@ -42,7 +42,7 @@ namespace Logica
 
         public void ActualizarInfo(Interesado interesado)
         {
-            Interesado InteresadoEncontrado = Context.Interesados.Find(interesado.identificacion);
+            Interesado InteresadoEncontrado = Context.Interesados.FirstOrDefault(i => i.identificacion == i.identificacion);
             if(InteresadoEncontrado.Nombres != interesado.Nombres)
             {
                 InteresadoEncontrado.Nombres = interesado.Nombres;

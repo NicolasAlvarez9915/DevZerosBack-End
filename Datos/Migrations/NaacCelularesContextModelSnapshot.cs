@@ -21,8 +21,10 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.DetalleFacturaCompra", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
@@ -30,8 +32,8 @@ namespace Datos.Migrations
                     b.Property<string>("CodDispositivoMovil")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CodFactura")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("CodFactura")
+                        .HasColumnType("int");
 
                     b.Property<float>("PorcentajeDescuento")
                         .HasColumnType("real");
@@ -66,8 +68,10 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.DetalleFacturaVenta", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
@@ -75,8 +79,8 @@ namespace Datos.Migrations
                     b.Property<string>("CodDispositivoMovil")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CodFactura")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("CodFactura")
+                        .HasColumnType("int");
 
                     b.Property<float>("PorcentajeDescuento")
                         .HasColumnType("real");
@@ -111,8 +115,10 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.DispositivoMovil", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Almacenamiento")
                         .HasColumnType("nvarchar(50)");
@@ -125,6 +131,9 @@ namespace Datos.Migrations
 
                     b.Property<string>("CapacidadBateria")
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<byte[]>("Imagen")
                         .HasColumnType("varbinary(max)");
@@ -168,15 +177,21 @@ namespace Datos.Migrations
                     b.Property<string>("TipoProteccion")
                         .HasColumnType("nvarchar(11)");
 
-                    b.HasKey("Codigo");
+                    b.HasKey("Id");
+
+                    b.HasIndex("Codigo")
+                        .IsUnique()
+                        .HasFilter("[Codigo] IS NOT NULL");
 
                     b.ToTable("DispositivosMoviles");
                 });
 
             modelBuilder.Entity("Entidad.FacturaCompra", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<float>("Descuento")
                         .HasColumnType("real");
@@ -203,8 +218,10 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.FacturaVenta", b =>
                 {
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Codigo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<float>("Descuento")
                         .HasColumnType("real");
@@ -231,8 +248,10 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.Interesado", b =>
                 {
-                    b.Property<string>("identificacion")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(50)");
@@ -246,15 +265,24 @@ namespace Datos.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("identificacion");
+                    b.Property<string>("identificacion")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("identificacion")
+                        .IsUnique()
+                        .HasFilter("[identificacion] IS NOT NULL");
 
                     b.ToTable("Interesados");
                 });
 
             modelBuilder.Entity("Entidad.LiderAvaluo", b =>
                 {
-                    b.Property<string>("identificacion")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(50)");
@@ -271,15 +299,24 @@ namespace Datos.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("identificacion");
+                    b.Property<string>("identificacion")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("identificacion")
+                        .IsUnique()
+                        .HasFilter("[identificacion] IS NOT NULL");
 
                     b.ToTable("LideresAvaluo");
                 });
 
             modelBuilder.Entity("Entidad.ProfecionalVentas", b =>
                 {
-                    b.Property<string>("identificacion")
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Apellidos")
                         .HasColumnType("nvarchar(50)");
@@ -296,30 +333,47 @@ namespace Datos.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("identificacion");
+                    b.Property<string>("identificacion")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("identificacion")
+                        .IsUnique()
+                        .HasFilter("[identificacion] IS NOT NULL");
 
                     b.ToTable("ProfecionalesVentas");
                 });
 
             modelBuilder.Entity("Entidad.Proveedor", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<string>("Nit")
                         .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Nit");
+                    b.HasKey("Id");
 
                     b.ToTable("Proveedores");
                 });
 
             modelBuilder.Entity("Entidad.Usuario", b =>
                 {
-                    b.Property<string>("Correo")
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Contraseña")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Correo")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Estado")
@@ -331,7 +385,11 @@ namespace Datos.Migrations
                     b.Property<string>("Rol")
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("Correo");
+                    b.HasKey("Id");
+
+                    b.HasIndex("Correo")
+                        .IsUnique()
+                        .HasFilter("[Correo] IS NOT NULL");
 
                     b.ToTable("Usuarios");
                 });
@@ -340,14 +398,18 @@ namespace Datos.Migrations
                 {
                     b.HasOne("Entidad.FacturaCompra", null)
                         .WithMany("DetallesFactura")
-                        .HasForeignKey("CodFactura");
+                        .HasForeignKey("CodFactura")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entidad.DetalleFacturaVenta", b =>
                 {
                     b.HasOne("Entidad.FacturaVenta", null)
                         .WithMany("DetallesFactura")
-                        .HasForeignKey("CodFactura");
+                        .HasForeignKey("CodFactura")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entidad.FacturaCompra", b =>

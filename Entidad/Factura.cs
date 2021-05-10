@@ -7,8 +7,7 @@ namespace Entidad
     public class Factura
     {
         [Key]
-        [Column(TypeName = "nvarchar(11)")]
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         [Column(TypeName = "Date")]
         public DateTime FechaFactura { get; set; }
     }

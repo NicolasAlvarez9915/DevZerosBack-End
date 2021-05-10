@@ -7,8 +7,7 @@ namespace Entidad
     public class DetalleFactura
     {
         [Key]
-        [Column(TypeName = "nvarchar(11)")]
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         [ForeignKey("DispositivoMovil")]
         public string CodDispositivoMovil { get; set; }
         [Column(TypeName = "real")]
@@ -19,8 +18,7 @@ namespace Entidad
         public int Cantidad { get; set; }
         [Column(TypeName = "real")]
         public decimal ValorUnitario { get; set; }
-        [Column(TypeName = "nvarchar(11)")]
-        public string CodFactura { get; set; }
+        public int CodFactura { get; set; }
         [Column(TypeName = "real")]
         public decimal Subtotal { get; set; }
         [Column(TypeName = "real")]

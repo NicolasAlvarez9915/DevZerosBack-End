@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Datos
 {
-    public class NaacCelularesContext: DbContext
+    public class NaacCelularesContext : DbContext
     {
         public NaacCelularesContext(DbContextOptions options) : base(options)
         {
@@ -19,5 +19,25 @@ namespace Datos
         public DbSet<ProfecionalVentas> ProfecionalesVentas { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<DispositivoMovil> DispositivosMoviles { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<DispositivoMovil>()
+                .HasIndex(u => u.Codigo)
+                .IsUnique();
+            builder.Entity<Usuario>()
+            .HasIndex(u => u.Correo)
+            .IsUnique();
+            builder.Entity<Interesado>()
+            .HasIndex(u => u.identificacion)
+            .IsUnique();
+            builder.Entity<LiderAvaluo>()
+            .HasIndex(u => u.identificacion)
+            .IsUnique();
+            builder.Entity<ProfecionalVentas>()
+            .HasIndex(u => u.identificacion)
+            .IsUnique();
+        }
     }
 }

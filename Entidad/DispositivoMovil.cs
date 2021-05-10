@@ -7,6 +7,7 @@ namespace Entidad
     public class DispositivoMovil
     {
         [Key]
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(11)")]
         public string Codigo { get; set; }
         [Column(TypeName = "int")]

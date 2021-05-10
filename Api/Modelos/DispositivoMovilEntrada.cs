@@ -5,6 +5,7 @@ namespace Api.Modelos
 {
     public class DispositivoMovilEntrada
     {
+        public int Id { get; set; }
         public string Codigo { get; set; }
         public int Cantidad { get; set; }
         public string Marca { get; set; }
@@ -32,6 +33,7 @@ namespace Api.Modelos
 
         }
         public DispositivoMovilVista(DispositivoMovil dispositivoMovil){
+            Id = dispositivoMovil.Id;
             Codigo = dispositivoMovil.Codigo;
             Cantidad = dispositivoMovil.Cantidad;
             Marca = dispositivoMovil.Marca;

@@ -6,7 +6,7 @@ namespace Api.Modelos
 {
     public class FacturaCompraEntrada
     {
-        public string Codigo { get; set; }
+        public int Codigo { get; set; }
         public DateTime FechaFactura { get; set; }
         public List<DetalleFacturaCompra> DetallesFactura { get; set; }
         public string IdProveedor { get; set; }

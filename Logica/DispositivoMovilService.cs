@@ -18,7 +18,7 @@ namespace Logica
         {
             try
             {
-                DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.Find(dispositivo.Codigo);
+                DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.FirstOrDefault(p => p.Codigo == dispositivo.Codigo);
                 if (dispositivoEncontrado == null)
                 {
                     Context.DispositivosMoviles.Add(dispositivo);
@@ -38,7 +38,7 @@ namespace Logica
 
         public void Abastecer(DispositivoMovil dispositivo)
         {
-            DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.Find(dispositivo.Codigo);
+            DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.FirstOrDefault(p => p.Codigo == dispositivo.Codigo);
             dispositivoEncontrado.PorcentajeIva = dispositivo.PorcentajeIva;
             dispositivoEncontrado.PrecioCompra = dispositivo.PrecioVenta;
             dispositivoEncontrado.Cantidad += dispositivo.Cantidad;
@@ -48,7 +48,7 @@ namespace Logica
 
         public void RestarCantidad(string codigo, int Cantidad)
         {
-            DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.Find(codigo);
+            DispositivoMovil dispositivoEncontrado = Context.DispositivosMoviles.FirstOrDefault(p => p.Codigo == codigo);
             dispositivoEncontrado.Cantidad -= Cantidad;
             Context.DispositivosMoviles.Update(dispositivoEncontrado);
             Context.SaveChanges();
@@ -56,7 +56,7 @@ namespace Logica
 
         public Respuesta<DispositivoMovil> Buscar(string Codigo)
         {
-            DispositivoMovil dispositivoMovil = Context.DispositivosMoviles.Find(Codigo);
+            DispositivoMovil dispositivoMovil = Context.DispositivosMoviles.FirstOrDefault(p => p.Codigo == Codigo);
             if (dispositivoMovil != null) return new Respuesta<DispositivoMovil>(dispositivoMovil);
             return new Respuesta<DispositivoMovil>("No existe");
         }

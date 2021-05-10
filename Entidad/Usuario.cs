@@ -7,13 +7,14 @@ namespace Entidad
     public class Usuario
     {
         [Key]
+        public int Id {get; set;}
         [Column(TypeName = "nvarchar(50)")]
         public string Correo { get; set; }
         
         [Column(TypeName = "nvarchar(11)")]
         [ForeignKey("Persona")]
         public string Identificacion { get; set; }
-        [Column(TypeName = "nvarchar(50)")]
+        [Column(TypeName = "nvarchar(max)")]
         public string Contraseña { get; set; }
         [Column(TypeName = "nvarchar(20)")]
         public string Rol { get; set; }

@@ -27,17 +27,18 @@ namespace Api.Controllers
             Service = new DispositivoMovilService(context);
         }
 
-
+        
         [HttpGet("{Codigo}")]
-        public ActionResult<DispositivoMovilVista> Get(string codigo)
+        public ActionResult<DispositivoMovilVista> Get(string Codigo)
         {
-            var response = Service.Buscar(codigo);
+            var response = Service.Buscar(Codigo);
             if (response.Error)
             {
                 return BadRequest(response.Mensaje);
             }
             return Ok(new DispositivoMovilVista(response.Objecto));
         }
+        
         [HttpPost]
         public ActionResult<DispositivoMovilVista> Post(List<DispositivoMovilEntrada> Entrada)
         {
@@ -55,6 +56,7 @@ namespace Api.Controllers
         {
             return new DispositivoMovil
             {
+                Id = entrada.Id,
                 Almacenamiento = entrada.Almacenamiento,
                 Camara = entrada.Camara,
                 Cantidad = entrada.Cantidad,
@@ -94,14 +96,12 @@ namespace Api.Controllers
 
             return Convert.FromBase64String(imagenB64);
         }
-
         [HttpPut("Actualizar")]
         public ActionResult<String> Put(DispositivoMovilEntrada Entrada)
         {
             Service.Abastecer(MapearDispositivoMovil(Entrada));
             return Ok("Correcto");
         }
-
         [HttpGet]
         public IEnumerable<DispositivoMovilVista> Gets()
         {

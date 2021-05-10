@@ -22,31 +22,29 @@ namespace Logica
 
         public Respuesta<FacturaVenta> Guardar(FacturaVenta factura)
         {
-            try
+           List<DetalleFacturaVenta> DetallesFacturaVenta = factura.DetallesFactura;
+            factura.DetallesFactura = null;
+            using (var DbTransaccion = Context.Database.BeginTransaction())
             {
-                factura = InicializarCodigos(factura);
-                factura.FechaFactura = DateTime.Now;
-                Context.FacturasVentas.Add(factura);
-                Context.SaveChanges();
-                return new Respuesta<FacturaVenta>(factura);
+                try
+                {
+                    Context.FacturasVentas.Add(factura);
+                    Context.SaveChanges();
+                    FacturaVenta facturaEncontrada = Context.FacturasVentas.ToList()[Context.FacturasVentas.ToList().Count()-1];
+                    foreach (var item in DetallesFacturaVenta)
+                    {
+                        item.CodFactura = facturaEncontrada.Codigo;
+                        Context.DetallesFacturaVenta.Add(item);
+                    }
+                    Context.SaveChanges();
+                    return new Respuesta<FacturaVenta>(factura);
+                }
+                catch (Exception e)
+                {
+                    DbTransaccion.Rollback();
+                    return new Respuesta<FacturaVenta>($"Error de la aplicacion: {e.Message}");
+                }
             }
-            catch (Exception e)
-            {
-                return new Respuesta<FacturaVenta>($"Error de la aplicacion: {e.Message}");
-            }
-        }
-
-        private FacturaVenta InicializarCodigos(FacturaVenta factura)
-        {
-            factura.Codigo = Context.FacturasVentas.ToList().Count().ToString();
-            int codigoactual = Context.DetallesFacturaVenta.ToList().Count();
-            foreach (var item in factura.DetallesFactura)
-            {
-                item.CodFactura = factura.Codigo;
-                item.Codigo = codigoactual.ToString();
-                codigoactual++;
-            }
-            return factura;
         }
 
         public Respuesta<FacturaVenta> generarFactura(Interesado interesado, List<DispositivoMovil> dispositivos)
@@ -61,3 +59,4 @@ namespace Logica
         }
     }
 }
+

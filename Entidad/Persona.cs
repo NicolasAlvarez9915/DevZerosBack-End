@@ -7,6 +7,7 @@ namespace Entidad
     public class Persona
     {
         [Key]
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar(11)")]
         public string identificacion { get; set; }
         [Column(TypeName = "nvarchar(50)")]

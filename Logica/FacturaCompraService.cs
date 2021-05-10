@@ -20,7 +20,7 @@ namespace Logica
             return Context.FaturasCompras.ToList();
         }
 
-        public List<FacturaCompra> buscarFacturasDispositivo(String codigo)
+        public List<FacturaCompra> buscarFacturasDispositivo(string codigo)
         {
             List<FacturaCompra> facturas = Context.FaturasCompras.Include(s => s.DetallesFactura).ToList();
             List<FacturaCompra> facturasDispositivo = new List<FacturaCompra>();
@@ -28,7 +28,8 @@ namespace Logica
             {
                 foreach (var item1 in item.DetallesFactura)
                 {
-                    if(item1.CodDispositivoMovil == codigo){
+                    if (item1.CodDispositivoMovil == codigo)
+                    {
                         facturasDispositivo.Add(item);
                         break;
                     }
@@ -39,33 +40,29 @@ namespace Logica
 
         public Respuesta<FacturaCompra> Guardar(FacturaCompra factura)
         {
-            try
+            List<DetalleFacturaCompra> DetallesFacturaCompras = factura.DetallesFactura;
+            factura.DetallesFactura = null;
+            using (var DbTransaccion = Context.Database.BeginTransaction())
             {
-                factura = InicializarCodigos(factura);
-                factura.FechaFactura = DateTime.Now;
-                Context.FaturasCompras.Add(factura);
-                Context.SaveChanges();
-                return new Respuesta<FacturaCompra>(factura);
+                try
+                {
+                    Context.FaturasCompras.Add(factura);
+                    Context.SaveChanges();
+                    FacturaCompra facturaEncontrada = Context.FaturasCompras.ToList()[Context.FaturasCompras.ToList().Count()-1];
+                    foreach (var item in DetallesFacturaCompras)
+                    {
+                        item.CodFactura = facturaEncontrada.Codigo;
+                        Context.DetallesFacturaCompra.Add(item);
+                    }
+                    Context.SaveChanges();
+                    return new Respuesta<FacturaCompra>(factura);
+                }
+                catch (Exception e)
+                {
+                    DbTransaccion.Rollback();
+                    return new Respuesta<FacturaCompra>($"Error de la aplicacion: {e.Message}");
+                }
             }
-            catch (Exception e)
-            {
-                return new Respuesta<FacturaCompra>($"Error de la aplicacion: {e.Message}");
-            }
-        }
-
-
-
-        private FacturaCompra InicializarCodigos(FacturaCompra factura)
-        {
-            factura.Codigo = Context.FaturasCompras.ToList().Count().ToString();
-            int codigoactual = Context.DetallesFacturaCompra.ToList().Count();
-            foreach (var item in factura.DetallesFactura)
-            {
-                item.CodFactura = factura.Codigo;
-                item.Codigo = codigoactual.ToString();
-                codigoactual++;
-            }
-            return factura;
         }
 
         public Respuesta<FacturaCompra> generarFactura(Proveedor proveeedor, List<DispositivoMovil> dispositivos)

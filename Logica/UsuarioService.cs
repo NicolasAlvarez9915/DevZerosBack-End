@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using Datos;
 using Entidad;
 
@@ -19,9 +21,9 @@ namespace Logica
             ValidarUsuariosPredeterminados();
         }
 
-        public Usuario ValidarSession(Usuario usuario) 
+        public Usuario ValidarSession(Usuario usuario)
         {
-            return Context.Usuarios.FirstOrDefault(t => t.Correo == usuario.Correo && t.Contraseña == usuario.Contraseña && t.Estado == "AC");
+            return Context.Usuarios.FirstOrDefault(t => t.Correo == usuario.Correo && t.Contraseña == Hash.GetSha256(usuario.Contraseña) && t.Estado == "AC");
         }
 
 
@@ -29,6 +31,7 @@ namespace Logica
         {
             try
             {
+                usuario.Contraseña = Hash.GetSha256(usuario.Contraseña);
                 Context.Usuarios.Add(usuario);
                 Context.SaveChanges();
                 return new Respuesta<Usuario>(usuario);
@@ -39,19 +42,22 @@ namespace Logica
             }
         }
 
-        public Respuesta<Usuario> Buscar(string correo){
-            Usuario usuario = Context.Usuarios.Find(correo);
-            if(usuario != null) return new Respuesta<Usuario>(usuario);
+        public Respuesta<Usuario> Buscar(string correo)
+        {
+            Usuario usuario = Context.Usuarios.FirstOrDefault(c => c.Correo == correo);
+            if (usuario != null) return new Respuesta<Usuario>(usuario);
             return new Respuesta<Usuario>("No existe");
         }
 
-        private void ValidarUsuariosPredeterminados(){
+        private void ValidarUsuariosPredeterminados()
+        {
             string correo = "liderAvaluos@admin.com";
-            Usuario usuario = Context.Usuarios.Find(correo);
+            Usuario usuario = Context.Usuarios.FirstOrDefault(c => c.Correo == correo);
             if (usuario == null)
             {
                 LiderAvaluo liderAvaluo = liderAvaluosService.RegistrarUsuarioPorDefecto();
-                usuario = new Usuario{
+                usuario = new Usuario
+                {
                     Contraseña = "admin",
                     Identificacion = liderAvaluo.identificacion,
                     Correo = correo,
@@ -61,11 +67,12 @@ namespace Logica
                 Guardar(usuario);
             }
             correo = "profecionalVentas@admin.com";
-            usuario = Context.Usuarios.Find(correo);
+            usuario = Context.Usuarios.FirstOrDefault(c => c.Correo == correo);
             if (usuario == null)
             {
                 ProfecionalVentas profecionalVentas = profecionalVentasService.RegistrarUsuarioPorDefecto();
-                usuario = new Usuario{
+                usuario = new Usuario
+                {
                     Contraseña = "admin",
                     Identificacion = profecionalVentas.identificacion,
                     Correo = correo,
@@ -74,7 +81,22 @@ namespace Logica
                 };
                 Guardar(usuario);
             }
-                
+
+        }
+    }
+
+    public static class Hash
+    {
+        public static string GetSha256(string str)
+        {
+            var sha256 = SHA256.Create();
+            var encoding = new ASCIIEncoding();
+            byte[] stream = null;
+            var sb = new StringBuilder();
+            stream = sha256.ComputeHash(encoding.GetBytes(str));
+            foreach (var t in stream)
+                sb.AppendFormat("{0:x2}", t);
+            return sb.ToString();
         }
     }
 }
