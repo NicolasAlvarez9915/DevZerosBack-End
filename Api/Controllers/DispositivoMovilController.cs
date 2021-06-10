@@ -18,6 +18,8 @@ namespace Api.Controllers
     [ApiController]
     public class DispositivoMovilController : ControllerBase
     {
+
+        
         private readonly DispositivoMovilService Service;
         private JwtService JwtService { get; set; }
 
